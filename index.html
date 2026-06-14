@@ -1,0 +1,1107 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2XS Fitness Center | Serious Gym Miami</title>
+    <!-- Google Fonts: Bebas Neue (Headings) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              charcoal: '#121212',
+              gymDark: '#1a1a1a', 
+              gymDarker: '#0a0a0a',
+              electricRed: '#E63946',
+              electricRedHover: '#D62230',
+              gold: '#FFD700',
+              goldHover: '#E6C300',
+              gymGray: '#222222',
+              gymGrayLight: '#2a2a2a',
+            },
+            fontFamily: {
+              bebas: ['"Bebas Neue"', 'sans-serif'],
+              inter: ['"Inter"', 'sans-serif'],
+              impact: ['"Impact"', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Sophisticated Dark Grit & Industrial Overlays */
+      .grit-overlay {
+        background-image: 
+          radial-gradient(rgba(230, 57, 70, 0.05) 1.5px, transparent 1.5px),
+          linear-gradient(rgba(10, 10, 10, 0.5) 40%, rgba(18, 18, 18, 0.98) 100%);
+        background-size: 24px 24px, 100% 100%;
+      }
+      .metal-grid {
+        background-size: 40px 40px;
+        background-image: 
+          linear-gradient(to right, rgba(230, 57, 70, 0.02) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(230, 57, 70, 0.02) 1px, transparent 1px);
+      }
+      /* Custom scrollbar matching sophisticated dark red theme */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #121212;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #222222;
+        border: 2px solid #121212;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #E63946;
+      }
+      /* Scroll animation states */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* Custom Text Stroke effect for steel grid aesthetics */
+      .steel-stroke {
+        -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.08);
+        color: transparent;
+      }
+      /* Card glows on hover conforming to Sophisticated Dark borders */
+      .glow-red:hover {
+        box-shadow: 0 10px 30px rgba(230, 57, 70, 0.08);
+        border-color: #E63946;
+      }
+    </style>
+  </head>
+  <body class="bg-charcoal text-white font-inter selection:bg-electricRed selection:text-white overflow-x-hidden antialiased">
+    
+    <!-- Sticky Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-5 px-4 md:px-8 bg-transparent">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        
+        <!-- Gym Logo -->
+        <a id="nav-logo" href="#" class="flex items-baseline gap-2 group">
+          <span class="font-impact italic text-3xl md:text-4xl font-black tracking-tighter text-[#E63946] group-hover:text-white transition-colors">2XS FITNESS</span>
+          <span class="hidden md:inline text-[9px] font-bold tracking-widest text-neutral-400 uppercase">EST. 2008 • MIA</span>
+        </a>
+
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex items-center gap-8 font-semibold text-xs tracking-widest uppercase text-neutral-300">
+          <a href="#about" class="hover:text-electricRed transition-colors duration-200">About Us</a>
+          <a href="#offers" class="hover:text-electricRed transition-colors duration-200">What We Offer</a>
+          <a href="#pricing" class="hover:text-electricRed transition-colors duration-200 font-bold">Memberships</a>
+          <a href="#layover" class="hover:text-electricRed transition-colors duration-200">Airport / Layover</a>
+          <a href="#visit" class="hover:text-electricRed transition-colors duration-200">Visit Us</a>
+        </div>
+
+        <!-- Desktop CTAs -->
+        <div class="hidden lg:flex items-center gap-4">
+          <button onclick="openModal('join')" class="border border-neutral-800 hover:border-electricRed hover:bg-electricRed/5 px-4 py-2 text-[10px] font-bold uppercase tracking-widest transition-all duration-200 rounded-none text-neutral-200">
+            Join Club
+          </button>
+          <button onclick="openModal('daypass')" class="bg-electricRed border border-electricRed hover:bg-transparent hover:text-electricRed text-white px-5 py-2 text-[10px] font-black uppercase tracking-widest transition-all duration-200 rounded-none shadow-none">
+            Get Day Pass
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-toggle" aria-label="Toggle Menu" class="lg:hidden text-white hover:text-electricRed focus:outline-none z-50">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path id="hamburger-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobile-drawer" class="fixed inset-0 bg-gymDarker/95 backdrop-blur-lg transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden flex flex-col justify-center items-center gap-6 text-2xl font-bebas tracking-widest uppercase z-40">
+        <a href="#about" onclick="toggleDrawer()" class="hover:text-electricRed transition-colors duration-200">About Us</a>
+        <a href="#offers" onclick="toggleDrawer()" class="hover:text-electricRed transition-colors duration-200">What We Offer</a>
+        <a href="#pricing" onclick="toggleDrawer()" class="hover:text-electricRed transition-colors duration-200">Memberships</a>
+        <a href="#layover" onclick="toggleDrawer()" class="hover:text-electricRed transition-colors duration-200">Airport & Day Pass</a>
+        <a href="#visit" onclick="toggleDrawer()" class="hover:text-electricRed transition-colors duration-200">Visit Us</a>
+        <div class="flex flex-col gap-4 mt-8 w-2/3">
+          <button onclick="toggleDrawer(); openModal('join')" class="border border-neutral-800 hover:border-electricRed hover:text-electricRed py-3 text-xs font-bold uppercase tracking-widest transition-all duration-200 rounded-none text-neutral-300">
+            Join Club (Inscribirse)
+          </button>
+          <button onclick="toggleDrawer(); openModal('daypass')" class="bg-electricRed hover:bg-transparent border border-electricRed hover:text-electricRed text-white py-3 text-xs font-bold tracking-widest transition-all duration-200 rounded-none shadow-none text-center">
+            Get Day Pass ($10)
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gymDarker pt-20">
+      <!-- High-res Grit/Garage Gym Background with dim dark overlay -->
+      <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=1920&auto=format&fit=crop');"></div>
+      <div class="absolute inset-0 grit-overlay"></div>
+      <div class="absolute inset-0 metal-grid opacity-30"></div>
+
+      <!-- Content -->
+      <div class="relative max-w-5xl mx-auto px-4 md:px-8 text-center flex flex-col items-center">
+        <!-- Bilingual EST Indicator -->
+        <div class="inline-flex items-center gap-2 bg-electricRed/10 border border-electricRed/40 text-neutral-200 px-4 py-1.5 rounded-none text-xs font-bold uppercase tracking-widest mb-6 animate-pulse">
+          <span class="w-1.5 h-1.5 bg-electricRed"></span>
+          Est. 2010 • Miami, FL • Bilingual Community
+        </div>
+
+        <h1 class="font-bebas text-6xl sm:text-7xl md:text-9xl tracking-tight leading-none text-white select-none">
+          TRAIN HARD. <br class="sm:hidden" /><span class="text-electricRed">TRAIN REAL.</span>
+        </h1>
+        
+        <p class="mt-6 text-gray-300 text-base sm:text-lg md:text-xl max-w-2xl font-normal leading-relaxed">
+          Miami's rawest, most dedicated fitness institution. No screens on machines, no filters, no corporate nonsense. Just authentic iron, unmatched hygiene, and a family that has your back.
+        </p>
+
+        <!-- CTAs -->
+        <div class="mt-10 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+          <button onclick="openModal('join')" class="w-full sm:w-auto bg-electricRed hover:bg-neutral-900 border border-electricRed hover:border-neutral-800 text-white font-bebas text-2xl uppercase tracking-wider py-4 px-10 transition-all duration-200 rounded-none shadow-none">
+            Join The Family
+          </button>
+          <button onclick="openModal('daypass')" class="w-full sm:w-auto border-2 border-gold text-gold hover:bg-gold/10 font-bebas text-2xl uppercase tracking-wider py-4 px-10 transition-all duration-200 rounded-none">
+            Get Day Pass ($10)
+          </button>
+        </div>
+
+        <!-- Bento Stats Overlay -->
+        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl pt-8 border-t border-white/10 text-center">
+          <div>
+            <div class="font-bebas text-3xl md:text-4xl text-electricRed">16+ years</div>
+            <div class="text-xs text-gray-400 uppercase tracking-widest mt-1">Loyal Members</div>
+          </div>
+          <div>
+            <div class="font-bebas text-3xl md:text-4xl text-white">4.5 ★★★★★</div>
+            <div class="text-xs text-gray-400 uppercase tracking-widest mt-1">207+ Google Reviews</div>
+          </div>
+          <div>
+            <div class="font-bebas text-3xl md:text-4xl text-gold">8 Mins</div>
+            <div class="text-xs text-gray-400 uppercase tracking-widest mt-1">From Miami Airport (MIA)</div>
+          </div>
+          <div>
+            <div class="font-bebas text-3xl md:text-4xl text-white">Luis</div>
+            <div class="text-xs text-gray-400 uppercase tracking-widest mt-1">Dedicated Trainer</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. About 2XS Section -->
+    <section id="about" class="relative py-24 md:py-32 bg-gymDark overflow-hidden select-none">
+      <div id="about-container" class="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center reveal">
+        
+        <!-- Big text-stroke background display -->
+        <div class="absolute top-4 right-4 font-bebas text-[14vw] steel-stroke uppercase select-none leading-none pointer-events-none opacity-20">
+          MIAMI REALS
+        </div>
+
+        <!-- Column Left: Text Material -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-[2px] bg-electricRed"></span>
+            <span class="text-electricRed uppercase tracking-widest text-sm font-bold">Our Culture / Nuestra Cultura</span>
+          </div>
+          <h2 class="font-bebas text-4xl sm:text-5xl md:text-6xl tracking-tight leading-none text-white">
+            WHERE CHAMPIONS TRAIN<br class="hidden sm:inline" />
+            <span class="text-electricRed">DONDE LOS CAMPEONES ENTRENAN</span>
+          </h2>
+          <p class="text-gray-300 text-base md:text-lg leading-relaxed font-light">
+            Founded with a passion for hardcore fitness and community, <span class="font-bold text-white">2XS Fitness Center</span> is a local institution in Miami. For over 15 years, we've provided solid, clean, and reliable training facilities. We aren't a high-street corporate gym with hidden contracts. We are a family.
+          </p>
+          <div class="bg-charcoal/50 border-l-4 border-electricRed p-4 my-2">
+            <p class="text-gray-300 italic text-sm md:text-base leading-relaxed">
+              "Aquí se entrena de verdad. Traiga su cafecito, deje las excusas en la puerta, disfrute de nuestra música latina en las noches, y aprenda lo que es entrenar de verdad."
+            </p>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Whether you are a seasoned local lifter, an avid worker aiming for peak health, or a traveler stranded near MIA airport seeking a quick workout block — you will find exactly what you need at 2XS.
+          </p>
+        </div>
+
+        <!-- Column Right: Visual Bento Card -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative bg-gymDarker p-8 border border-neutral-800 glow-red transition-all duration-300 rounded-none overflow-hidden">
+            <div class="absolute inset-0 grit-overlay pointer-events-none"></div>
+            <div class="relative z-10 space-y-6">
+              <span class="font-bebas text-4xl text-gold block">BILINGUAL FAMILY</span>
+              <ul class="space-y-4 text-sm text-gray-300">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-electricRed shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span><strong>100% Bilingual:</strong> Our staff communicates fluently in English and Spanish.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-electricRed shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span><strong>Miami Cuban Vibe:</strong> Enjoy a lively, welcoming atmosphere. Bring in your warm cafecito!</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-electricRed shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span><strong>Luis Training staff:</strong> Get dedicated direction and safe heavy lifts with coach Luis.</span>
+                </li>
+              </ul>
+              <div class="pt-4 border-t border-neutral-800 flex items-center justify-between text-xs text-gray-400 font-bold uppercase tracking-widest">
+                <span>⚡ NO EXCURSIONS</span>
+                <span>⚡ REAL LIFTERS ONLY</span>
+              </div>
+            </div>
+            <!-- Vintage stamp effect -->
+            <div class="absolute bottom-[-10px] right-[-10px] opacity-10 select-none scale-150 transform rotate-12">
+              <svg class="w-32 h-32 fill-white" viewBox="0 0 24 24">
+                <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. What We Offer -->
+    <section id="offers" class="py-24 bg-charcoal relative">
+      <div id="offers-container" class="max-w-7xl mx-auto px-4 md:px-8 reveal">
+        
+        <div class="text-center space-y-4 mb-16">
+          <div class="flex items-center justify-center gap-3">
+            <span class="w-6 h-[2px] bg-electricRed"></span>
+            <span class="text-electricRed uppercase tracking-widest text-sm font-bold">Our Facility</span>
+            <span class="w-6 h-[2px] bg-electricRed"></span>
+          </div>
+          <h2 class="font-bebas text-4xl sm:text-5xl md:text-6xl tracking-tight text-white leading-none">
+            EVERYTHING YOU NEED. <span class="text-electricRed">NOTHING YOU DON'T.</span>
+          </h2>
+          <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base">
+            No redundant digital screens on plates, no lazy couches. We provide the classic, reliable machines you need for bulletproof results.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Card 1: Weight Training -->
+          <div class="group bg-gymDark p-8 border border-neutral-800 glow-red transition-all duration-300 rounded-none relative">
+            <div class="w-12 h-12 bg-electricRed/10 border border-electricRed/30 flex items-center justify-center rounded-none mb-6 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 stroke-electricRed fill-none" viewBox="0 0 24 24" stroke-width="2">
+                <rect x="2" y="8" width="4" height="8" rx="1" />
+                <rect x="18" y="8" width="4" height="8" rx="1" />
+                <line x1="6" y1="12" x2="18" y2="12" />
+                <line x1="10" y1="9" x2="10" y2="15" />
+                <line x1="14" y1="9" x2="14" y2="15" />
+              </svg>
+            </div>
+            <h3 class="font-bebas text-2xl tracking-wide text-white group-hover:text-electricRed transition-colors">Weight Training</h3>
+            <p class="text-gray-400 text-sm mt-3 leading-relaxed font-light">
+              Dumbbells up to 120 lbs, multiple heavy-duty squat cages, full plate-loaded selectorized structures, and pure iron plates. Raw, hardcore, and ready to take a beating.
+            </p>
+          </div>
+
+          <!-- Card 2: Cardio Equipment -->
+          <div class="group bg-gymDark p-8 border border-neutral-800 glow-red transition-all duration-300 rounded-none relative">
+            <div class="w-12 h-12 bg-electricRed/10 border border-electricRed/30 flex items-center justify-center rounded-none mb-6 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 stroke-electricRed fill-none" viewBox="0 0 24 24" stroke-width="2">
+                <path d="M4 12V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v8M12 12h8v9H12z" />
+                <path d="M2 12h20M4 21h16" />
+              </svg>
+            </div>
+            <h3 class="font-bebas text-2xl tracking-wide text-white group-hover:text-electricRed transition-colors">Cardio Equipment</h3>
+            <p class="text-gray-400 text-sm mt-3 leading-relaxed font-light">
+              Stairmasters, high-performance treadmills, rowers, and upright stationary bikes. Kept in flawless working order so you never wait to hit your conditioning zones.
+            </p>
+          </div>
+
+          <!-- Card 3: Personal Training with Luis -->
+          <div class="group bg-gymDark p-8 border border-neutral-800 glow-red transition-all duration-300 rounded-none bg-cover bg-center" style="background-image: linear-gradient(to bottom, rgba(26,26,26,0.96), rgba(26,26,26,0.99));">
+            <div class="w-12 h-12 bg-electricRed/10 border border-electricRed/30 flex items-center justify-center rounded-none mb-6 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 stroke-electricRed fill-none" viewBox="0 0 24 24" stroke-width="2">
+                <circle cx="12" cy="7" r="4" />
+                <path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
+              </svg>
+            </div>
+            <h3 class="font-bebas text-2xl tracking-wide text-white group-hover:text-electricRed transition-colors font-medium">1-on-1 Trainer Luis</h3>
+            <p class="text-gray-400 text-sm mt-3 leading-relaxed font-light">
+              Highly praised across Miami, Luis offers professional, target-specific direction, core posture corrections, food structure layouts, and persistent motivation for real changes.
+            </p>
+          </div>
+
+          <!-- Card 4: Flexible Memberships -->
+          <div class="group bg-gymDark p-8 border border-neutral-800 glow-red transition-all duration-300 rounded-none">
+            <div class="w-12 h-12 bg-electricRed/10 border border-electricRed/30 flex items-center justify-center rounded-none mb-6 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 stroke-electricRed fill-none" viewBox="0 0 24 24" stroke-width="2">
+                <rect x="3" y="4" width="18" height="16" rx="2" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+                <line x1="7" y1="15" x2="12" y2="15" />
+              </svg>
+            </div>
+            <h3 class="font-bebas text-2xl tracking-wide text-white group-hover:text-electricRed transition-colors">Flexible Terms</h3>
+            <p class="text-gray-400 text-sm mt-3 leading-relaxed font-light">
+              No mandatory credit check. Pay in cash, debit card, or credit card. No deceptive signup contracts or forced automatic bank withdrawals. Just transparent, fair gym agreements.
+            </p>
+          </div>
+
+          <!-- Card 5: Day Passes Welcome -->
+          <div class="group bg-gymDark p-8 border border-neutral-800 glow-red transition-all duration-300 rounded-none">
+            <div class="w-12 h-12 bg-electricRed/10 border border-electricRed/30 flex items-center justify-center rounded-none mb-6 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 stroke-electricRed fill-none" viewBox="0 0 24 24" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <h3 class="font-bebas text-2xl tracking-wide text-white group-hover:text-electricRed transition-colors">Day Passes / Layover</h3>
+            <p class="text-gray-400 text-sm mt-3 leading-relaxed font-light">
+              Passing through Miami International Airport? Stuck on a long layover? Get full access to our weight cages and showers. Our simple day passes keep your fitness streak alive.
+            </p>
+          </div>
+
+          <!-- Card 6: Flawless cleanliness -->
+          <div class="group bg-gymDark p-8 border border-neutral-800 glow-red transition-all duration-300 rounded-none">
+            <div class="w-12 h-12 bg-electricRed/10 border border-electricRed/30 flex items-center justify-center rounded-none mb-6 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 stroke-electricRed fill-none" viewBox="0 0 24 24" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <path d="m9.09 9 1-1h3.82l1 1v4H9.09V9zm0 5h5.82v1H9.09v-1z" />
+              </svg>
+            </div>
+            <h3 class="font-bebas text-2xl tracking-wide text-white group-hover:text-electricRed transition-colors">Spotless Hygiene</h3>
+            <p class="text-gray-400 text-sm mt-3 leading-relaxed font-light">
+              Consistently praised across years of real reviews. Equipment is thoroughly deep-sanitized every day. Clean showers, pristine training frames, and fresh air layouts.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Membership Plans -->
+    <section id="pricing" class="py-24 bg-gymDark relative">
+      <div id="pricing-container" class="max-w-7xl mx-auto px-4 md:px-8 reveal">
+        
+        <div class="text-center space-y-4 mb-16">
+          <div class="flex items-center justify-center gap-3">
+            <span class="w-6 h-[2px] bg-electricRed"></span>
+            <span class="text-electricRed uppercase tracking-widest text-sm font-bold">Uncompromising Pricing</span>
+            <span class="w-6 h-[2px] bg-electricRed"></span>
+          </div>
+          <h2 class="font-bebas text-4xl sm:text-5xl md:text-6xl tracking-tight text-white leading-none">
+            MEMBERSHIP PLANS
+          </h2>
+          <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base">
+            No bank integration required. Pay with cash or credit card. Zero hidden setup fees or early exit penalties.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Card 1: Day Pass -->
+          <div class="bg-gymDark border border-neutral-800 rounded-none overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-2 glow-red shadow-none">
+            <div class="p-8 border-b border-neutral-800 bg-gymDarker/40">
+              <span class="text-xs uppercase bg-white/10 text-white font-bold tracking-widest px-3 py-1 rounded-none">Single Session</span>
+              <h3 class="font-bebas text-3xl text-white mt-4 tracking-wide">DAY Pass</h3>
+              <p class="text-gray-400 text-xs mt-1">Perfect for travelers, airport layovers, & drop-ins</p>
+              <div class="mt-6 flex items-baseline gap-1">
+                <span class="text-3xl text-white font-bold font-bebas">$</span>
+                <span class="text-6xl font-extrabold text-white font-bebas tracking-tight">10</span>
+                <span class="text-gray-400 text-xs">/ Visit</span>
+              </div>
+            </div>
+            <div class="p-8 flex-grow flex flex-col justify-between">
+              <ul class="space-y-4 text-sm text-gray-300">
+                <li class="flex items-center gap-3">
+                  <svg class="w-5 h-5 text-electricRed shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span>1 Full day of access (No limits)</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <svg class="w-5 h-5 text-electricRed shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span>Shower, locker room use included</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <svg class="w-5 h-5 text-electricRed shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span>Free dynamic parking layout</span>
+                </li>
+              </ul>
+              <button onclick="openModal('daypass')" class="mt-8 w-full border-2 border-gold hover:bg-gold hover:text-charcoal text-gold font-bebas text-xl py-3 tracking-wider uppercase transition-all duration-200 rounded-none">
+                Generate Pass
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2: Monthly (Popular) -->
+          <div class="bg-gymDark border-2 border-electricRed rounded-none overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-2 relative scale-100 md:scale-105 z-10 shadow-none">
+            <div class="bg-electricRed text-white font-bold text-center py-1.5 text-xs uppercase tracking-widest">
+              Most Popular / Amado Localmente
+            </div>
+            <div class="p-8 border-b border-neutral-800 bg-gymDarker/60">
+              <h3 class="font-bebas text-4xl text-white tracking-wide">MONTHLY</h3>
+              <p class="text-gray-300 text-xs mt-1">Full flexible membership. Cancel anytime.</p>
+              <div class="mt-6 flex items-baseline gap-1">
+                <span class="text-3xl text-electricRed font-bold font-bebas">$</span>
+                <span class="text-6xl font-extrabold text-white font-bebas tracking-tight">40</span>
+                <span class="text-gray-400 text-xs">/ Month</span>
+              </div>
+            </div>
+            <div class="p-8 flex-grow flex flex-col justify-between">
+              <ul class="space-y-4 text-sm text-gray-300">
+                <li class="flex items-center gap-3">
+                  <svg class="w-5 h-5 text-electricRed shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span><strong>Unlimited</strong> Weight & Cardio Areas</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <svg class="w-5 h-5 text-electricRed shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span>Pay by cash or card each month</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <svg class="w-5 h-5 text-electricRed shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span>No credit search, exit locks, or secrets</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <svg class="w-5 h-5 text-electricRed shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span>Direct consulting reviews with Luis</span>
+                </li>
+              </ul>
+              <button onclick="openModal('join')" class="mt-8 w-full bg-electricRed hover:bg-neutral-900 border border-electricRed hover:border-neutral-800 text-white font-bebas text-xl py-3.5 tracking-wider uppercase transition-all duration-200 rounded-none shadow-none">
+                Secure This Plan
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 3: 6-Month Commitment -->
+          <div class="bg-gymDark border border-neutral-800 rounded-none overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-2 glow-red shadow-none">
+            <div class="p-8 border-b border-neutral-800 bg-gymDarker/40">
+              <span class="text-xs uppercase bg-gold/20 text-gold font-bold tracking-widest px-3 py-1 rounded-none">Best VALUE / El mejor</span>
+              <h3 class="font-bebas text-3xl text-white mt-4 tracking-wide">6-MONTH PLAN</h3>
+              <p class="text-gray-400 text-xs mt-1">For those committed to real transformation</p>
+              <div class="mt-6 flex items-baseline gap-1">
+                <span class="text-3xl text-white font-bold font-bebas">$</span>
+                <span class="text-6xl font-extrabold text-white font-bebas tracking-tight">199</span>
+                <span class="text-gray-400 text-xs">/ One-time</span>
+              </div>
+            </div>
+            <div class="p-8 flex-grow flex flex-col justify-between">
+              <ul class="space-y-4 text-sm text-gray-300">
+                <li class="flex items-center gap-3">
+                  <svg class="w-5 h-5 text-electricRed shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span>Saves over 20% compared to Month-to-Month</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <svg class="w-5 h-5 text-electricRed shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span>Safe lock-in on current fitness pricing</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <svg class="w-5 h-5 text-electricRed shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span>Zero mandatory auto-bank links required</span>
+                </li>
+              </ul>
+              <button onclick="openModal('join')" class="mt-8 w-full border-2 border-neutral-700 hover:border-white hover:bg-white hover:text-charcoal text-white font-bebas text-xl py-3 tracking-wider uppercase transition-all duration-200 rounded-none">
+                Secure This Plan
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="mt-12 text-center text-xs text-gray-400 max-w-xl mx-auto bg-gymDarker p-4 border border-neutral-800 rounded-none">
+          <p class="font-semibold text-white mb-1 uppercase tracking-wide">⚠️ Honest Gym Mandate / Compromiso Sincero</p>
+          We will never force you to link a bank account for automated ach withdraws or run surprise monthly maintenance fees. Pay easily with cash or card over the front desk counter. No tricks.
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Testimonials Section -->
+    <section class="py-24 bg-charcoal relative">
+      <div id="testimonials-container" class="max-w-7xl mx-auto px-4 md:px-8 reveal">
+        
+        <div class="text-center space-y-4 mb-16">
+          <div class="flex items-center justify-center gap-3">
+            <span class="w-6 h-[2px] bg-electricRed"></span>
+            <span class="text-electricRed uppercase tracking-widest text-sm font-bold">15+ Years of Dedicated Voices</span>
+            <span class="w-6 h-[2px] bg-electricRed"></span>
+          </div>
+          <h2 class="font-bebas text-4xl sm:text-5xl md:text-6xl tracking-tight text-white leading-none">
+            LOVED BY LONG-TERM LOCALS
+          </h2>
+          <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base">
+            Ask any member on the floor. Our high-ratings are built on 16 years of honest dedication and consistency.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          <!-- Quote 1 -->
+          <div class="bg-gymDark p-8 border border-neutral-800 rounded-none text-left flex flex-col justify-between glow-red transition-all duration-300">
+            <div>
+              <div class="flex items-center gap-1 text-gold mb-4">
+                <span>★★★★★</span>
+              </div>
+              <p class="text-gray-200 italic md:text-lg leading-relaxed font-light">
+                "I've been coming to 2XS for over 15 years. It is always exceptionally clean, the machines are properly maintained, and there is a authentic family feeling. You can't find this level of care at corporate chains."
+              </p>
+            </div>
+            <div class="mt-6 flex items-center gap-4 border-t border-neutral-800 pt-4">
+              <div class="w-10 h-10 rounded-none bg-electricRed/10 border border-electricRed/30 flex items-center justify-center font-bold text-electricRed text-sm">RH</div>
+              <div>
+                <h4 class="font-bold text-white text-sm">Rolando H.</h4>
+                <p class="text-xs text-gray-400">Miami Resident • Member since 2011</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quote 2 -->
+          <div class="bg-gymDark p-8 border border-neutral-800 rounded-none text-left flex flex-col justify-between glow-red transition-all duration-300">
+            <div>
+              <div class="flex items-center gap-1 text-gold mb-4">
+                <span>★★★★★</span>
+              </div>
+              <p class="text-gray-200 italic md:text-lg leading-relaxed font-light">
+                "Excellent staff, pristine cleanliness, and equipment in true robust working layout! It's a highly motivating space. You feel comfortable whether you are a beginner or pushing very heavy cages."
+              </p>
+            </div>
+            <div class="mt-6 flex items-center gap-4 border-t border-neutral-800 pt-4">
+              <div class="w-10 h-10 rounded-none bg-electricRed/10 border border-electricRed/30 flex items-center justify-center font-bold text-electricRed text-sm">CB</div>
+              <div>
+                <h4 class="font-bold text-white text-sm">Constantine B.</h4>
+                <p class="text-xs text-gray-400">Dedicated Lifter • Local Member</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quote 3 -->
+          <div class="bg-gymDark p-8 border border-neutral-800 rounded-none text-left flex flex-col justify-between glow-red transition-all duration-300">
+            <div>
+              <div class="flex items-center gap-1 text-gold mb-4">
+                <span>★★★★★</span>
+              </div>
+              <p class="text-gray-200 italic md:text-lg leading-relaxed font-light">
+                "A real gym for people taking fitness serious. Best gym around! Luis helps with meal layouts and core posture. No fancy lifestyle bells, just serious weight and genuine support."
+              </p>
+            </div>
+            <div class="mt-6 flex items-center gap-4 border-t border-neutral-800 pt-4">
+              <div class="w-10 h-10 rounded-none bg-electricRed/10 border border-electricRed/30 flex items-center justify-center font-bold text-electricRed text-sm">AS</div>
+              <div>
+                <h4 class="font-bold text-white text-sm">Anthony S.</h4>
+                <p class="text-xs text-gray-400">Competitive Powerlifter</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quote 4 -->
+          <div class="bg-gymDark p-8 border border-neutral-800 rounded-none text-left flex flex-col justify-between glow-red transition-all duration-300">
+            <div>
+              <div class="flex items-center gap-1 text-gold mb-4">
+                <span>★★★★★</span>
+              </div>
+              <p class="text-gray-200 italic md:text-lg leading-relaxed font-light">
+                "Personal trainer Luis is extremely professional. If you want someone who truly cares about raw technique, meal structures, and your actual health progress rather than a generic subscription fee, he is definitely your trainer."
+              </p>
+            </div>
+            <div class="mt-6 flex items-center gap-4 border-t border-neutral-800 pt-4">
+              <div class="w-10 h-10 rounded-none bg-electricRed/10 border border-electricRed/30 flex items-center justify-center font-bold text-electricRed text-sm">AG</div>
+              <div>
+                <h4 class="font-bold text-white text-sm">Alissa G.</h4>
+                <p class="text-xs text-gray-400">Trained with Luis 2+ Years</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Traveler Day Pass Banner Section -->
+    <section id="layover" class="relative py-20 bg-gymDarker overflow-hidden border-y border-neutral-800">
+      <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20" style="background-image: url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=1200&auto=format&fit=crop');"></div>
+      <div class="absolute inset-0 grit-overlay"></div>
+      <div class="relative max-w-5xl mx-auto px-4 md:px-8 text-center space-y-6">
+        <span class="inline-block bg-gold text-charcoal font-bold text-xs uppercase tracking-widest px-4 py-1.5 rounded-none">MIA airport layover friendly</span>
+        <h2 class="font-bebas text-4xl sm:text-5xl md:text-6xl tracking-tight text-white leading-none">
+          STRANDED IN MIAMI? <span class="text-electricRed">KEEP THE STREAK ALIVE.</span>
+        </h2>
+        <p class="text-gray-300 max-w-2xl mx-auto text-base leading-relaxed">
+          Stuck during a long flight layover? Located just 8 minutes from Miami International Airport, 2XS welcomes travelers with flexible, fuss-free single-session Day Passes ($10). Show your pass at our front desk, lock up your luggage, take a deep shower, and conquer your travel day.
+        </p>
+        <div class="pt-4">
+          <button onclick="openModal('daypass')" class="bg-gold border border-gold hover:bg-transparent hover:text-gold text-charcoal font-bebas text-2xl tracking-wider uppercase px-10 py-4 transition-all duration-200 rounded-none shadow-none">
+            Claim Airport Day Pass ($10)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Visit Us & Map Section -->
+    <section id="visit" class="py-24 bg-charcoal relative">
+      <div id="visit-container" class="max-w-7xl mx-auto px-4 md:px-8 reveal">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+          
+          <!-- Column Left: Contact Info -->
+          <div class="lg:col-span-5 flex flex-col justify-between space-y-8 select-none">
+            <div class="space-y-4">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-[2px] bg-electricRed"></span>
+                <span class="text-electricRed uppercase tracking-widest text-sm font-bold">Find the Iron</span>
+              </div>
+              <h2 class="font-bebas text-4xl sm:text-5xl md:text-6xl tracking-tight text-white leading-none">
+                VISIT THE FORGE
+              </h2>
+              <p class="text-gray-300 text-sm md:text-base font-light font-medium">
+                Give us a ring, drop by, or grab your gym bag. We are conveniently situated in the central Miami airport layout zone.
+              </p>
+            </div>
+
+            <!-- Detailed Grid info -->
+            <div class="space-y-6 text-sm text-gray-300">
+              
+              <!-- Address -->
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-none bg-gymDark flex items-center justify-center text-electricRed border border-neutral-800 shrink-0">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                </div>
+                <div>
+                  <h4 class="font-bold text-white uppercase tracking-wider text-xs">Our Facility Address</h4>
+                  <p class="mt-1 text-gray-400">7890 NW 36th Street, Doral, FL 33166</p>
+                  <p class="text-xs text-gold mt-1">Conveniently located 8 minutes East of MIA terminal.</p>
+                </div>
+              </div>
+
+              <!-- Gym Hours -->
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-none bg-gymDark flex items-center justify-center text-electricRed border border-neutral-800 shrink-0">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <div>
+                  <h4 class="font-bold text-white uppercase tracking-wider text-xs">Gym Hours / Horario</h4>
+                  <div class="grid grid-cols-2 gap-x-4 gap-y-1 mt-2 text-gray-400 text-xs">
+                    <span>Mon - Fri:</span> <span class="text-white font-semibold">5:00 AM - 10:00 PM</span>
+                    <span>Saturday:</span> <span class="text-white font-semibold">6:00 AM - 7:00 PM</span>
+                    <span>Sunday:</span> <span class="text-white font-semibold">8:00 AM - 4:00 PM</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Contact detail -->
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-none bg-gymDark flex items-center justify-center text-electricRed border border-neutral-800 shrink-0">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1.3 1.3 0 01-.321 1.285L7.74 8.7a13.3 13.3 0 005.56 5.56l1.233-1.233a1.3 1.3 0 011.285-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                </div>
+                <div>
+                  <h4 class="font-bold text-white uppercase tracking-wider text-xs">Phone Outlets</h4>
+                  <p class="mt-1 text-gray-400">(305) 555-02XS / (305) 555-0297</p>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Parking Indicator Note -->
+            <div class="bg-electricRed/10 border border-electricRed/30 p-4 rounded-none text-xs text-gray-300 flex items-start gap-3">
+              <span class="text-lg">🚗</span>
+              <div>
+                <strong class="text-white block uppercase tracking-wider">Massive Free Parking Lot</strong>
+                No strict meters, zero city tickets. Space is always wide open right outside our roll-up gym gates.
+              </div>
+            </div>
+          </div>
+
+          <!-- Column Right: Dark-themed Map Placeholder/Embed -->
+          <div class="lg:col-span-7 h-[350px] lg:h-auto min-h-[350px] relative rounded-none overflow-hidden border border-neutral-800 shadow-none bg-gymDarker flex flex-col justify-between">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14371.321873041925!2d-80.3308316147614!3d25.809054700000007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9beb63d330c69%3A0xe10ff6fe3554eec5!2s7890%20NW%2036th%20St%2C%20Doral%2C%20FL%2033166!5e0!3m2!1sen!2sus!4v1718320000000!5m2!1sen!2sus" 
+              class="absolute inset-0 w-full h-full border-0 grayscale invert opacity-80" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            
+            <!-- Map overlay tag -->
+            <div class="absolute bottom-4 left-4 z-10 bg-gymDarker/90 backdrop-blur border border-neutral-800 p-2 text-xs rounded-none text-white flex items-center gap-2">
+              <span class="w-2.5 h-2.5 bg-electricRed rounded-full animate-ping"></span>
+              <span>2XS Fitness, Miami</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Footer -->
+    <footer class="bg-gymDarker text-gray-400 py-16 border-t border-neutral-800 text-sm select-none">
+      <div class="max-w-7xl mx-auto px-4 md:px-8 space-y-12">
+        
+        <div class="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+          <div class="space-y-3">
+            <div class="flex items-center justify-center md:justify-start gap-2">
+              <span class="font-impact italic text-3xl font-black tracking-tight text-[#E63946]"><span class="text-white">2XS</span> FITNESS</span>
+            </div>
+            <p class="text-xs uppercase tracking-widest text-electricRed font-bold">
+              Where Champions Train / Donde los Campeones Entrenan
+            </p>
+          </div>
+
+          <!-- Social Icon Placeholders -->
+          <div class="flex items-center gap-4">
+            <span class="text-xs uppercase tracking-widest text-gray-500 font-bold block">Follow our grit:</span>
+            <a href="#" aria-label="Instagram" class="w-8 h-8 rounded-none bg-white/5 border border-neutral-800 hover:border-electricRed hover:text-electricRed flex items-center justify-center transition-colors">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10S2 17.514 2 12 6.486 2 12 2zm0-2C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 7c-2.761 0-5 2.239-5 5s2.239 5 5 5 5-2.239 5-5-2.239-5-5-5zm0 8c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3-1.346 3-3 3zm5-10.25a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0z"/></svg>
+            </a>
+            <a href="#" aria-label="Facebook" class="w-8 h-8 rounded-none bg-white/5 border border-neutral-800 hover:border-electricRed hover:text-electricRed flex items-center justify-center transition-colors">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10S2 17.514 2 12 6.486 2 12 2zm0-2C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-2 10H8v2h2v6h2v-6h2l.5-2H12V8.5c0-.5.5-.5.5-.5h1.5V6h-2c-2 0-2.5 1.5-2.5 2v2z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center justify-between border-t border-neutral-800 pt-8 text-xs text-gray-500 gap-4 text-center md:text-left">
+          <div>
+            <p>© 2026 2XS Fitness Center, Miami. All Rights Reserved.</p>
+            <p class="mt-1 font-light">Where Champions Train. Donde los Campeones Entrenan.</p>
+          </div>
+          <div>
+            <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+            <span class="mx-2">•</span>
+            <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+
+    <!-- MODAL CONTAINER (Dynamic for DayPASS & Join Form) -->
+    <div id="modal-backdrop" class="fixed inset-0 bg-black/90 backdrop-blur-md hidden items-center justify-center z-50 p-4 transition-opacity duration-300 opacity-0">
+      
+      <!-- Day Pass Modal Container -->
+      <div id="daypass-modal" class="bg-gymDark max-w-lg w-full border border-neutral-800 p-6 md:p-8 rounded-none relative hidden max-h-[90vh] overflow-y-auto shadow-none">
+        <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors" aria-label="Close Modal">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+
+        <div class="space-y-6">
+          <div class="text-center">
+            <span class="font-bebas text-lg text-gold tracking-widest block">INSTANT ENTRY / ACCESO INMEDIATO</span>
+            <h3 class="font-bebas text-4xl text-white">GET A DAY PASS</h3>
+            <p class="text-gray-400 text-xs px-4 mt-1 font-light">Stranded near MIA airport or looking for a session? Fast-generate your ticket below.</p>
+          </div>
+
+          <!-- Form inside pass modal -->
+          <form id="daypass-form" onsubmit="generateDayPassTicket(event)" class="space-y-4 text-left">
+            <div>
+              <label class="block text-xs uppercase text-gray-400 tracking-wider font-bold mb-1.5" for="dp-name">FullName / Nombre Completo</label>
+              <input type="text" id="dp-name" required placeholder="e.g. John Doe" class="w-full bg-charcoal border border-neutral-800 px-4 py-2.5 rounded-none text-sm text-white focus:outline-none focus:border-gold font-light" />
+            </div>
+            <div>
+              <label class="block text-xs uppercase text-gray-400 tracking-wider font-bold mb-1.5" for="dp-email">Email Address</label>
+              <input type="email" id="dp-email" required placeholder="yourname@gmail.com" class="w-full bg-charcoal border border-neutral-800 px-4 py-2.5 rounded-none text-sm text-white focus:outline-none focus:border-gold font-light" />
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs uppercase text-gray-400 tracking-wider font-bold mb-1.5" for="dp-phone">Phone / Teléfono</label>
+                <input type="tel" id="dp-phone" required placeholder="(305) 555-0100" class="w-full bg-charcoal border border-neutral-800 px-4 py-2.5 rounded-none text-sm text-white focus:outline-none focus:border-gold font-light" />
+              </div>
+              <div>
+                <label class="block text-xs uppercase text-gray-400 tracking-wider font-bold mb-1.5" for="dp-status">Vibe Status</label>
+                <select id="dp-status" class="w-full bg-charcoal border border-neutral-800 px-4 py-2.5 rounded-none text-sm text-white focus:outline-none focus:border-gold font-light">
+                  <option value="layover">Airport Layover</option>
+                  <option value="local">Miami Local Lifter</option>
+                  <option value="visitor">Short-stay Visitor</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="bg-charcoal/50 p-4 border border-neutral-800 text-xs text-gray-400 rounded-none font-light">
+              <span class="text-gold font-bold block mb-1">🎟️ ENTRY MANDO:</span>
+              Bring your phone to the front desk. Present the ticket layout + raw $10 cash/card to the on-staff team. No long profiles requested!
+            </div>
+
+            <button type="submit" class="w-full bg-gold hover:bg-transparent border border-gold hover:text-gold text-charcoal font-bebas text-2xl py-3.5 rounded-none transition-colors uppercase tracking-wider font-bold shadow-none mt-2">
+              Generate Printable Day Pass ($10)
+            </button>
+          </form>
+
+          <!-- Ticket layout - hidden by default, shown after generate -->
+          <div id="daypass-ticket" class="hidden space-y-6 pt-4 border-t border-neutral-800">
+            <div class="bg-white text-charcoal font-bold rounded-none overflow-hidden shadow-none relative p-6">
+              
+              <!-- Ticket border cutouts -->
+              <div class="absolute top-1/2 left-[-10px] w-5 h-5 bg-gymDark rounded-full transform -translate-y-1/2"></div>
+              <div class="absolute top-1/2 right-[-10px] w-5 h-5 bg-gymDark rounded-full transform -translate-y-1/2"></div>
+
+              <!-- Top header -->
+              <div class="flex items-center justify-between border-b-2 border-dashed border-gray-300 pb-4">
+                <div>
+                  <div class="font-bebas text-3xl tracking-wide">2XS FITNESS CENTER</div>
+                  <div class="text-[10px] uppercase font-bold tracking-widest text-electricRed mt-0.5">Where Champions Train • Miami</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-[10px] uppercase tracking-wider text-gray-500">Pass Type</div>
+                  <div class="font-bebas text-xl text-electricRed">1-DAY TRIAL</div>
+                </div>
+              </div>
+
+              <!-- Ticket content -->
+              <div class="grid grid-cols-2 gap-4 py-6 text-xs text-left">
+                <div>
+                  <span class="block text-gray-500 uppercase tracking-wide">Holder Name / Titular</span>
+                  <span id="ticket-holder" class="font-bold text-sm block truncate">John Doe</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500 uppercase tracking-wide font-medium">Serial Passcode</span>
+                  <span id="ticket-serial" class="font-bold text-sm block">2XS-MIA-84920</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500 uppercase tracking-wide font-medium">Lifting Cost</span>
+                  <span class="font-bold text-sm block text-electricRed">$10 (Pay on Arrival)</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500 uppercase tracking-wide">Status</span>
+                  <span class="font-bold text-sm block text-emerald-600">✓ VALID FOR ENTRY</span>
+                </div>
+              </div>
+
+              <!-- QR Graphic Mock -->
+              <div class="border-t-2 border-dashed border-gray-300 pt-6 flex flex-col items-center justify-center gap-2">
+                <div class="bg-charcoal p-3 rounded-none">
+                  <!-- Vector Clean Barcode SVG -->
+                  <svg id="barcode" class="w-48 h-10 fill-white" viewBox="0 0 100 20">
+                    <rect x="0" width="2" height="20"/>
+                    <rect x="4" width="1" height="20"/>
+                    <rect x="7" width="3" height="20"/>
+                    <rect x="12" width="1" height="20"/>
+                    <rect x="15" width="2" height="20"/>
+                    <rect x="19" width="4" height="20"/>
+                    <rect x="25" width="1" height="20"/>
+                    <rect x="28" width="2" height="20"/>
+                    <rect x="33" width="3" height="20"/>
+                    <rect x="38" width="1" height="20"/>
+                    <rect x="42" width="2" height="20"/>
+                    <rect x="47" width="1" height="20"/>
+                    <rect x="50" width="4" height="20"/>
+                    <rect x="56" width="2" height="20"/>
+                    <rect x="60" width="1" height="20"/>
+                    <rect x="63" width="3" height="20"/>
+                    <rect x="68" width="2" height="20"/>
+                    <rect x="72" width="4" height="20"/>
+                    <rect x="78" width="1" height="20"/>
+                    <rect x="81" width="2" height="20"/>
+                    <rect x="85" width="3" height="20"/>
+                    <rect x="90" width="1" height="20"/>
+                    <rect x="93" width="4" height="20"/>
+                  </svg>
+                </div>
+                <span class="text-[9px] uppercase tracking-widest text-gray-500 font-bold">Screenshot & Bring on flight layover</span>
+              </div>
+            </div>
+
+            <button onclick="window.print()" class="w-full bg-charcoal hover:bg-gymDarker text-white font-bebas text-lg py-3 rounded-none border border-neutral-700 transition-colors">
+              Print Ticket Block
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Join Club Modal Container -->
+      <div id="join-modal" class="bg-gymDark max-w-lg w-full border border-neutral-800 p-6 md:p-8 rounded-none relative hidden max-h-[90vh] overflow-y-auto shadow-none">
+        <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+
+        <div class="space-y-6">
+          <div class="text-center">
+            <span class="font-bebas text-lg text-electricRed tracking-widest block">Welcome to the family</span>
+            <h3 class="font-bebas text-4xl text-white">Inscribirse / REGISTER NOW</h3>
+            <p class="text-gray-400 text-xs px-2 mt-1 font-light">Zero early locks. Transparent terms. Put down a workout routine tonight.</p>
+          </div>
+
+          <form id="join-form" onsubmit="submitJoinRegistration(event)" class="space-y-4 text-left">
+            <div>
+              <label class="block text-xs uppercase text-gray-400 tracking-wider font-bold mb-1.5" for="j-name">Full Name / Nombre Completo</label>
+              <input type="text" id="j-name" required placeholder="e.g. Rolando" class="w-full bg-charcoal border border-neutral-800 px-4 py-2.5 rounded-none text-sm text-white focus:outline-none focus:border-electricRed font-light" />
+            </div>
+            <div>
+              <label class="block text-xs uppercase text-gray-400 tracking-wider font-bold mb-1.5" for="j-email">Email Address</label>
+              <input type="email" id="j-email" required placeholder="rolando.miami@com" class="w-full bg-charcoal border border-neutral-800 px-4 py-2.5 rounded-none text-sm text-white focus:outline-none focus:border-electricRed font-light" />
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs uppercase text-gray-400 tracking-wider font-bold mb-1.5" for="j-phone">Telephone</label>
+                <input type="tel" id="j-phone" required placeholder="(305) 555-0210" class="w-full bg-charcoal border border-neutral-800 px-4 py-2.5 rounded-none text-sm text-white focus:outline-none focus:border-electricRed" />
+              </div>
+              <div>
+                <label class="block text-xs uppercase text-gray-400 tracking-wider font-bold mb-1.5" for="j-plan">Desired Plan</label>
+                <select id="j-plan" class="w-full bg-charcoal border border-neutral-800 px-4 py-2.5 rounded-none text-sm text-white focus:outline-none focus:border-electricRed font-light">
+                  <option value="Monthly - $40">Month-to-Month Plan ($40/Mo)</option>
+                  <option value="6-Month - $199">6-Month Commitment ($199 Total)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="bg-charcoal/50 p-4 border border-neutral-800 text-xs text-gray-400 rounded-none font-light">
+              <span class="text-electricRed font-bold block mb-1">🔥 NO CARD LOCKS:</span>
+              Once you submit interest, our staff at 2XS (often Luis himself) will reach out to secure your lock-in, arrange a tour of weights, or configure your free parking pass.
+            </div>
+
+            <button type="submit" class="w-full bg-electricRed hover:bg-neutral-900 border border-electricRed hover:border-neutral-800 text-white font-bebas text-2xl py-3.5 rounded-none transition-colors uppercase tracking-wider font-bold shadow-none">
+              Submit Registration (Registrar)
+            </button>
+          </form>
+
+          <div id="join-confirmation" class="hidden p-6 bg-electricRed/10 border border-electricRed text-center rounded-none space-y-4 font-light">
+            <span class="text-4xl">💪</span>
+            <div>
+              <h4 class="font-bebas text-2xl text-white font-bold uppercase tracking-wider">REGISTRATION SUCCESSFUL!</h4>
+              <p class="text-xs text-gray-300 mt-1">¡Le damos la bienvenida a la familia 2XS!</p>
+            </div>
+            <p class="text-xs text-gray-500 px-2 leading-relaxed">
+              We have locked in your selected fee. Show up at <strong>7890 NW 36th Street, Doral</strong> with your registration code: <strong class="text-white block tracking-widest mt-1 text-base text-white" id="j-code">2XS-REG-94827</strong>. Free parking is waiting for you!
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Smooth animations and logic code embed -->
+    <script>
+      // 1. Sticky Navbar Background Toggle & Logo Fade
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('bg-charcoal/95', 'backdrop-blur-md', 'py-4', 'shadow-lg', 'border-b', 'border-white/5');
+          navbar.classList.remove('bg-transparent', 'py-5');
+        } else {
+          navbar.classList.add('bg-transparent', 'py-5');
+          navbar.classList.remove('bg-charcoal/95', 'backdrop-blur-md', 'py-4', 'shadow-lg', 'border-b', 'border-white/5');
+        }
+      });
+
+      // 2. Mobile Drawer Navigation Toggle
+      const mobileToggle = document.getElementById('mobile-toggle');
+      const mobileDrawer = document.getElementById('mobile-drawer');
+      const hamburgerPath = document.getElementById('hamburger-path');
+
+      function toggleDrawer() {
+        const isOpen = !mobileDrawer.classList.contains('translate-x-full');
+        if (isOpen) {
+          mobileDrawer.classList.add('translate-x-full');
+          // Hamburger path icon return
+          hamburgerPath.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+        } else {
+          mobileDrawer.classList.remove('translate-x-full');
+          // Close button icon replace "X"
+          hamburgerPath.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+        }
+      }
+      mobileToggle.addEventListener('click', toggleDrawer);
+
+      // 3. Scroll Intersection Observer (Entrance animations)
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      // Target containers
+      const anims = ['about-container', 'offers-container', 'pricing-container', 'testimonials-container', 'visit-container'];
+      anims.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.classList.add('reveal');
+          observer.observe(el);
+        }
+      });
+
+      // 4. Modal Triggers
+      const backdrop = document.getElementById('modal-backdrop');
+      const dayPassModal = document.getElementById('daypass-modal');
+      const joinModal = document.getElementById('join-modal');
+      
+      const dpForm = document.getElementById('daypass-form');
+      const dpTicket = document.getElementById('daypass-ticket');
+      const joinForm = document.getElementById('join-form');
+      const joinConf = document.getElementById('join-confirmation');
+
+      function openModal(type) {
+        document.body.classList.add('overflow-hidden');
+        backdrop.classList.remove('hidden');
+        backdrop.classList.add('flex');
+        
+        // Triggers fade
+        setTimeout(() => {
+          backdrop.classList.remove('opacity-0');
+        }, 10);
+
+        if (type === 'daypass') {
+          dayPassModal.classList.remove('hidden');
+          joinModal.classList.add('hidden');
+          
+          // reset form layouts to state pristine
+          dpForm.classList.remove('hidden');
+          dpTicket.classList.add('hidden');
+        } else {
+          joinModal.classList.remove('hidden');
+          dayPassModal.classList.add('hidden');
+          
+          joinForm.classList.remove('hidden');
+          joinConf.classList.add('hidden');
+        }
+      }
+
+      function closeModal() {
+        document.body.classList.remove('overflow-hidden');
+        backdrop.classList.add('opacity-0');
+        
+        // Delayed hides for clean transitions
+        setTimeout(() => {
+          backdrop.classList.add('hidden');
+          backdrop.classList.remove('flex');
+          dayPassModal.classList.add('hidden');
+          joinModal.classList.add('hidden');
+        }, 300);
+      }
+
+      // Close modal on click of backdrop background
+      backdrop.addEventListener('click', (e) => {
+        if (e.target === backdrop) {
+          closeModal();
+        }
+      });
+
+      // 5. Day Pass Generation Ticket flow
+      function generateDayPassTicket(e) {
+        e.preventDefault();
+        
+        const nameInput = document.getElementById('dp-name').value;
+        const serialNo = '2XS-MIA-' + Math.floor(10000 + Math.random() * 90000);
+        
+        // Bind generated results
+        document.getElementById('ticket-holder').textContent = nameInput;
+        document.getElementById('ticket-serial').textContent = serialNo;
+        
+        // Transitions
+        dpForm.classList.add('hidden');
+        dpTicket.classList.remove('hidden');
+      }
+
+      // 6. Join registration submission flow
+      function submitJoinRegistration(e) {
+        e.preventDefault();
+        
+        const regCode = '2XS-REG-' + Math.floor(10000 + Math.random() * 90000);
+        
+        // Bind register
+        document.getElementById('j-code').textContent = regCode;
+        
+        // Transitions
+        joinForm.classList.add('hidden');
+        joinConf.classList.remove('hidden');
+      }
+    </script>
+  </body>
+</html>
